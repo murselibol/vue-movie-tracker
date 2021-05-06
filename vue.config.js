@@ -1,0 +1,26 @@
+module.exports = {
+  // SASS/SCSS
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `
+          @import "@/styles/_mediaQuery.scss";
+        `
+      }
+    }
+  },
+
+  // SVG
+  chainWebpack: (config) => {
+    const svgRule = config.module.rule('svg')
+
+    svgRule.uses.clear()
+
+    svgRule
+      .use('babel-loader')
+      .loader('babel-loader')
+      .end()
+      .use('vue-svg-loader')
+      .loader('vue-svg-loader')
+  }
+}
