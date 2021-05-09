@@ -1,5 +1,7 @@
 :root {
-  --header-height: 120px;
+  --header-height: 80px;
 
-  --color-persian-green: #00b38f;
+  --color-spring-green: #00e68a;
+  --color-white: #ffffff;
+  --color-imdb: #fbc607;
 }

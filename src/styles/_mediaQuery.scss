@@ -1,6 +1,6 @@
 @mixin mq($width: '--d') {
   @if ($width == '--t') {
-    @media (max-width: 979px) {
+    @media (max-width: 992px) {
       @content;
     }
   } @else if($width: '--d') {
