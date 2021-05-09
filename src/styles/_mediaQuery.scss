@@ -1,10 +1,10 @@
 @mixin mq($width: '--d') {
   @if ($width == '--t') {
-    @media (max-width: 992px) {
+    @media (max-width: 1144px) {
       @content;
     }
   } @else if($width: '--d') {
-    @media (min-width: 980px) {
+    @media (min-width: 1144px) {
       @content;
     }
   }

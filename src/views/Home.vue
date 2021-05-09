@@ -3,13 +3,14 @@
     <section class="movies">
       <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
     </section>
-    <aside class="sidebar"></aside>
+    <SideBar />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import MovieCard from '../components/MovieCard'
+import SideBar from '../components/SideBar'
 
 export default {
   name: 'Home',
@@ -19,7 +20,8 @@ export default {
     }
   },
   components: {
-    MovieCard
+    MovieCard,
+    SideBar
   },
   computed: {
     ...mapGetters(['movies'])
@@ -38,28 +40,17 @@ export default {
   padding-bottom: 15px;
   display: grid;
   grid-template-columns: 1fr 300px;
-  grid-gap: 30px;
+  grid-column-gap: 30px;
 
   @include mq('--t') {
     display: block;
-    justify-content: center;
+    grid-column-gap: 0;
   }
 
   .movies {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px 15px;
-    justify-content: center;
-
-    @include mq('--t') {
-    }
-  }
-  .sidebar {
-    display: block;
-    background-color: yellowgreen;
-    @include mq('--t') {
-      display: none;
-    }
+    gap: 29px;
   }
 }
 </style>
