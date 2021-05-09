@@ -1,31 +1,28 @@
 <template>
   <div class="app">
     <Container>
-      <CustomText class="customm" tag="h1" size="xxlarge">mooviex</CustomText>
-      <CustomText tag="span" size="normal">murselibol</CustomText>
-
-      <h1>App</h1>
-      <router-view />
+      <Header />
+      <Search />
+      <main class="main">
+        <router-view />
+      </main>
     </Container>
   </div>
 </template>
 
 <script>
 import Container from './components/Container'
-import CustomText from './components/CustomText'
+import Header from './components/Header'
+import Search from './components/Search'
+
 export default {
   name: 'App',
   components: {
     Container,
-    CustomText
+    Header,
+    Search
   }
 }
 </script>
 
-<style lang="scss">
-.customm {
-  &:hover {
-    color: var(--color-persian-green);
-  }
-}
-</style>
+<style lang="scss"></style>
