@@ -9,12 +9,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/movie/:id',
+    name: 'MovieDetails',
+    component: () => import(/* webpackChunkName: "MovieDetails" */ '../views/MovieDetails.vue')
   }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
 ]
 
 const router = new VueRouter({

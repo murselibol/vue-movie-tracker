@@ -5,6 +5,8 @@ import router from './router'
 import store from './store'
 import './styles/app.css'
 
+export const eventBus = new Vue()
+
 Vue.config.productionTip = false
 
 new Vue({
