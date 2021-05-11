@@ -94,10 +94,17 @@ export default {
     .movie-title {
       font-size: 1rem;
       font-weight: normal;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      display: block;
+      width: 100%;
+
       transition: 0.3s;
+
+      @include mq('--576') {
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
       &:hover {
         color: var(--color-spring-green);
@@ -110,7 +117,7 @@ export default {
     max-width: calc(100% / 1);
     // flex: 0 0 calc(100% / 1);
   }
-  @media (min-width: 526px) {
+  @media (min-width: 576px) {
     max-width: calc((100% - (var(--movies-gap) * 1)) / 2);
     // flex: 0 0 calc(100% / 2);
   }

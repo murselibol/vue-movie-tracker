@@ -1,5 +1,9 @@
 @mixin mq($width: '--320') {
-  @if ($width == '--576') {
+  @if ($width == '--320') {
+    @media (min-width: 320px) {
+      @content;
+    }
+  } @else if ($width == '--576') {
     @media (min-width: 576px) {
       @content;
     }
