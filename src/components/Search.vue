@@ -1,5 +1,5 @@
 <template>
-  <section class="search">
+  <section class="search" v-if="isMenuActive">
     <form class="form-search">
       <input type="text" name="search" placeholder="search..." />
       <IconSearch class="icon-search" />
@@ -9,11 +9,22 @@
 
 <script>
 import IconSearch from '../assets/icons/search.svg'
+import { eventBus } from '../main.js'
 
 export default {
   name: 'Search',
   components: {
     IconSearch
+  },
+  data() {
+    return {
+      isMenuActive: true
+    }
+  },
+  created() {
+    eventBus.$on('menuStatus', (status) => {
+      this.isMenuActive = status
+    })
   }
 }
 </script>
@@ -25,23 +36,29 @@ export default {
   justify-content: center;
   padding-top: 30px;
   padding-bottom: 30px;
+  z-index: 99;
 
   .form-search {
     position: relative;
+    width: 500px;
     input {
-      min-width: 500px;
+      width: 100%;
       height: 50px;
       font-size: 1.125rem;
       font-weight: 500;
       padding-left: 25px;
+      padding-right: 25px;
       color: white;
       background-color: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 40px;
     }
 
+    @include mq('--1200') {
+      z-index: 1;
+    }
+
     .icon-search {
-      position: absolute;
       position: absolute;
       right: 25px;
       top: 50%;
