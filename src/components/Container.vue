@@ -18,6 +18,9 @@ export default {
   padding-right: 10px;
 
   // MEDİA QUERY
+  @media (min-width: 320px) {
+    max-width: 576px;
+  }
   @media (min-width: 576px) {
     max-width: 768px;
   }
@@ -28,8 +31,6 @@ export default {
 
   @media (min-width: 992px) {
     max-width: 1200px;
-    padding-left: 50px;
-    padding-right: 50px;
   }
 
   @media (min-width: 1200px) {
@@ -40,8 +41,6 @@ export default {
 
   @media (min-width: 1440px) {
     max-width: 1600px;
-    padding-left: 50px;
-    padding-right: 50px;
   }
 }
 </style>

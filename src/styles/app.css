@@ -44,8 +44,8 @@ a {
 }
 
 img {
-  max-width: 100%;
-  vertical-align: middle;
+  /* max-width: 100%; */
+  /* vertical-align: middle; */
 }
 
 svg {
@@ -80,4 +80,13 @@ button {
   cursor: pointer;
   color: white;
   font-size: 1rem;
+}
+
+.closeScroll {
+  overflow: hidden;
+  height: 100%;
+}
+.openScroll {
+  overflow: auto;
+  height: auto;
 }

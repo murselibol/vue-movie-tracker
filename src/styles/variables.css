@@ -1,7 +1,11 @@
 :root {
   --header-height: 80px;
+  --finger-size: 40px;
+
+  --movies-gap: 30px;
 
   --color-spring-green: #00e68a;
   --color-white: #ffffff;
+  --color-black: #000000;
   --color-imdb: #fbc607;
 }

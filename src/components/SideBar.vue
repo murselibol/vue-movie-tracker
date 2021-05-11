@@ -10,10 +10,10 @@ export default {
 
 <style lang="scss" scoped>
 .sidebar {
-  display: block;
-  background-color: yellowgreen;
-  @include mq('--t') {
-    display: none;
+  display: none;
+  @include mq('--1200') {
+    background-color: yellowgreen;
+    display: block;
   }
 }
 </style>

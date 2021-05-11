@@ -1,6 +1,6 @@
 <template>
   <div class="movie-card">
-    <router-link to="/">
+    <router-link :to="moviePath">
       <div class="card-img">
         <MovieImg class="card-img-poster" :imgPath="movie.poster_path" :imgAlt="movie.title" />
         <div class="poster-overlay">
@@ -33,6 +33,11 @@ export default {
   components: {
     MovieImg,
     IconStar
+  },
+  computed: {
+    moviePath() {
+      return `/movie/${this.movie.id}`
+    }
   }
 }
 </script>
@@ -41,6 +46,13 @@ export default {
 .movie-card {
   border-radius: 4px;
   background-color: #0d0d0d;
+  transition: 0.2s;
+
+  &:hover {
+    box-shadow: 0px 0px 13px 2px rgba(255, 255, 255, 0.78);
+    // box-shadow: 0px 0px 13px 2px rgba(163, 163, 163, 0.78);
+    transition: 0.2s;
+  }
 
   .card-img {
     cursor: pointer;
@@ -96,23 +108,27 @@ export default {
 
   @media (min-width: 320px) {
     max-width: calc(100% / 1);
-    flex: 0 0 calc(100% / 1);
+    // flex: 0 0 calc(100% / 1);
+  }
+  @media (min-width: 526px) {
+    max-width: calc((100% - (var(--movies-gap) * 1)) / 2);
+    // flex: 0 0 calc(100% / 2);
   }
   @media (min-width: 768px) {
-    max-width: calc((100% - 60px) / 3);
-    flex: 0 0 calc(100% / 3);
+    max-width: calc((100% - (var(--movies-gap) * 2)) / 3);
+    // flex: 0 0 calc(100% / 3);
   }
   @media (min-width: 992px) {
-    max-width: calc((100% - 80px) / 3);
-    flex: 0 0 calc(100% / 3);
+    max-width: calc((100% - (var(--movies-gap) * 3)) / 4);
+    // flex: 0 0 calc(100% / 4);
   }
   @media (min-width: 1200px) {
-    max-width: calc((100% - 100px) / 4);
-    flex: 0 0 calc(100% / 4);
+    max-width: calc((100% - (var(--movies-gap) * 3)) / 4);
+    // flex: 0 0 calc(100% / 4);
   }
   @media (min-width: 1440px) {
-    max-width: calc((100% - 120px) / 5);
-    flex: 0 0 calc(100% / 5);
+    max-width: calc((100% - (var(--movies-gap) * 4)) / 5);
+    // flex: 0 0 calc(100% / 5);
   }
 }
 </style>

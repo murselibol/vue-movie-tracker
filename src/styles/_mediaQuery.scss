@@ -1,10 +1,22 @@
-@mixin mq($width: '--d') {
-  @if ($width == '--t') {
-    @media (max-width: 1144px) {
+@mixin mq($width: '--320') {
+  @if ($width == '--576') {
+    @media (min-width: 576px) {
       @content;
     }
-  } @else if($width: '--d') {
-    @media (min-width: 1144px) {
+  } @else if($width == '--768') {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if($width == '--992') {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if($width == '--1200') {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else if($width == '--1440') {
+    @media (min-width: 1440px) {
       @content;
     }
   }

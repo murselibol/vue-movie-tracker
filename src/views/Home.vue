@@ -39,18 +39,17 @@ export default {
   padding-top: 15px;
   padding-bottom: 15px;
   display: grid;
-  grid-template-columns: 1fr 300px;
-  grid-column-gap: 30px;
+  grid-column-gap: 0;
 
-  @include mq('--t') {
-    display: block;
-    grid-column-gap: 0;
+  @include mq('--1200') {
+    grid-template-columns: 1fr 300px;
+    grid-column-gap: 30px;
   }
 
   .movies {
     display: flex;
     flex-wrap: wrap;
-    gap: 29px;
+    gap: var(--movies-gap);
   }
 }
 </style>

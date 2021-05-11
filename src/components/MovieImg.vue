@@ -18,9 +18,9 @@ export default {
     },
     imgClass: {
       type: String,
-      default: 'movie-poster',
+      default: 'img-movie-poster',
       validator: function(value) {
-        return ['movie-poster'].indexOf(value) !== -1
+        return ['img-movie-poster', 'img-movie-backdrop', 'img-movie-thumbnail', 'img-movie-trailer'].indexOf(value) !== -1
       }
     }
   },
@@ -33,9 +33,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.movie-poster {
+.img-movie-poster {
   width: 100%;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+}
+.img-movie-backdrop {
+  border-radius: 4px;
+  width: 100%;
+  opacity: 0.1;
+  height: 100%;
+  // height: 100px;
+}
+.img-movie-thumbnail {
+  width: 100%;
+  @include mq('--768') {
+    width: 350px;
+  }
+}
+.img-movie-trailer {
+  width: 100%;
+  @include mq('--768') {
+    border-radius: 2px;
+    width: 250px;
+  }
 }
 </style>
