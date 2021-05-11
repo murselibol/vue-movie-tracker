@@ -88,6 +88,8 @@ export default {
 
 <style lang="scss" scoped>
 .main-container {
+  padding-top: 15px;
+  padding-bottom: 15px;
   .backdrop-img-container {
     position: absolute;
     width: 0;

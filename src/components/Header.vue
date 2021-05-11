@@ -5,7 +5,7 @@
       <IconMenu class="icon-menu" />
     </button>
 
-    <nav class="navigation" v-if="isMenuActive">
+    <nav class="navigation" :class="{ 'menu-show': isMenuActive }">
       <router-link to="/" class="nav-item">
         <IconHome class="icon-home" />
         <span class="nav-item-text">Home</span>
@@ -29,7 +29,7 @@
       </router-link>
     </nav>
 
-    <div class="header-right" v-if="isMenuActive">
+    <div class="header-right" :class="{ 'menu-show': isMenuActive }">
       <router-link to="/" class="login">
         <IconLogin class="icon-loogin" />
         <span class="login-text">Login</span>
@@ -67,7 +67,7 @@ export default {
   },
   data() {
     return {
-      isMenuActive: true
+      isMenuActive: false
     }
   },
 
@@ -158,7 +158,7 @@ export default {
   }
 
   .navigation {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -171,6 +171,7 @@ export default {
     width: 100%;
 
     @include mq('--1200') {
+      display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: center;
@@ -208,13 +209,14 @@ export default {
 
   .header-right {
     position: absolute;
-    display: flex;
+    display: none;
     align-items: center;
     top: 195px;
     z-index: 1;
 
     @include mq('--1200') {
       position: static;
+      display: flex;
     }
 
     .login {
@@ -242,11 +244,8 @@ export default {
     }
   }
 
-  // .menu-show {
-  //   opacity: 1;
-  //   pointer-events: auto;
-  //   transition: 0.2s;
-  //   transform: translateY(0);
-  // }
+  .menu-show {
+    display: flex;
+  }
 }
 </style>

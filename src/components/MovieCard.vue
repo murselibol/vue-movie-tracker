@@ -45,9 +45,9 @@ export default {
 <style lang="scss" scoped>
 .movie-card {
   border-radius: 4px;
-  background-color: #0d0d0d;
+  background-color: var(--color-movie-card-title-bg);
   transition: 0.2s;
-
+  // box-shadow: 0px 0px 13px 2px rgba(255, 255, 255, 0.2);
   &:hover {
     box-shadow: 0px 0px 13px 2px rgba(255, 255, 255, 0.78);
     // box-shadow: 0px 0px 13px 2px rgba(163, 163, 163, 0.78);
@@ -114,7 +114,7 @@ export default {
   }
 
   @media (min-width: 320px) {
-    max-width: calc(100% / 1);
+    width: 100%;
     // flex: 0 0 calc(100% / 1);
   }
   @media (min-width: 576px) {

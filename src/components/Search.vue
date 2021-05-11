@@ -1,5 +1,5 @@
 <template>
-  <section class="search" v-if="isMenuActive">
+  <section class="search" :class="{ 'menu-show-search': isMenuActive }">
     <form class="form-search">
       <input type="text" name="search" placeholder="search..." />
       <IconSearch class="icon-search" />
@@ -31,16 +31,16 @@ export default {
 
 <style lang="scss" scoped>
 .search {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding-top: 30px;
   padding-bottom: 30px;
-  z-index: 99;
 
   .form-search {
     position: relative;
     width: 500px;
+
     input {
       width: 100%;
       height: 50px;
@@ -66,5 +66,9 @@ export default {
       transform: translateY(-50%);
     }
   }
+}
+
+.menu-show-search {
+  display: flex;
 }
 </style>
