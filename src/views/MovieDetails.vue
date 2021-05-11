@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="main-container" v-if="isLoading">
     <div class="backdrop-img-container">
       <MovieImg :imgPath="movie.backdrop_path" :imgAlt="movie.title" imgClass="img-movie-backdrop" />
     </div>
@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      isLoading: true
+      isLoading: false
     }
   },
 
@@ -80,7 +80,7 @@ export default {
 
   created() {
     return this.fetchMovieDetails().then(() => {
-      this.isLoading = false
+      this.isLoading = true
     })
   }
 }

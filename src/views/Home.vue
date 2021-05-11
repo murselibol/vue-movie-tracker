@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="main-container" v-if="isLoading">
     <section class="movies">
       <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
     </section>
@@ -16,7 +16,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      isLoading: true
+      isLoading: false
     }
   },
   components: {
@@ -28,7 +28,7 @@ export default {
   },
   created() {
     this.$store.dispatch('fetchMovies').then(() => {
-      this.isLoading = false
+      this.isLoading = true
     })
   }
 }
