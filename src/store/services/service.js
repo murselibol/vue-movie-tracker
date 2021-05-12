@@ -14,7 +14,7 @@ export default {
   },
 
   fetchMovieVideos(movieId) {
-    return tmdb.get(`/movie/${movieId}/videos/${apiKey}`)
+    return tmdb.get(`/movie/${movieId}/videos${apiKey}`)
   },
 
   fetchMovieSearch(movieSearch) {

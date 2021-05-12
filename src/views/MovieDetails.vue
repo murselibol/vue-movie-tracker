@@ -24,12 +24,18 @@
         </div>
       </div>
     </section>
+
+    <section class="video-play">
+      <a href=""><h5 class="video-player-name">Player1</h5></a>
+      <MovieVideo :moviePath="movieVideoKey" />
+    </section>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import MovieImg from '../components/MovieImg'
+import MovieVideo from '../components/MovieVideo'
 import IconStar from '../assets/icons/star.svg'
 import IconCalendar from '../assets/icons/calendar.svg'
 import IconClock from '../assets/icons/clock.svg'
@@ -40,6 +46,7 @@ export default {
   name: 'MovieDetails',
   components: {
     MovieImg,
+    MovieVideo,
     IconStar,
     IconCalendar,
     IconClock,
@@ -48,12 +55,20 @@ export default {
   },
   data() {
     return {
-      isLoading: false
+      isLoading: false,
+      isOpenTrailer: false
     }
+  },
+  created() {
+    this.fetchMovieVideos()
+
+    return this.fetchMovieDetails().then(() => {
+      this.isLoading = true
+    })
   },
 
   computed: {
-    ...mapGetters(['movie']),
+    ...mapGetters(['movie', 'movieVideoKey']),
 
     movieId() {
       return this.$route.params.id
@@ -75,21 +90,19 @@ export default {
   methods: {
     fetchMovieDetails() {
       return this.$store.dispatch('fetchMovieDetails', this.movieId)
+    },
+    fetchMovieVideos() {
+      this.$store.dispatch('fetchMovieVideos', this.movieId)
+    },
+    openTrailerPlayer() {
+      this.isOpenTrailer = true
     }
-  },
-
-  created() {
-    return this.fetchMovieDetails().then(() => {
-      this.isLoading = true
-    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .main-container {
-  padding-top: 15px;
-  padding-bottom: 15px;
   .backdrop-img-container {
     position: absolute;
     width: 0;
@@ -104,6 +117,8 @@ export default {
   }
 
   .movie-details {
+    padding-top: 15px;
+    padding-bottom: 40px;
     display: flex;
     flex-direction: column;
     font-size: 0.875rem;
@@ -161,6 +176,27 @@ export default {
           height: 50px;
           width: 50px;
         }
+      }
+    }
+  }
+
+  .video-play {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-top: 1px solid #444;
+
+    .video-player-name {
+      margin-bottom: 10px;
+      display: inline-block;
+      border: 1.2px solid var(--color-spring-green);
+      border-radius: 5px;
+      padding: 10px;
+      transition: 0.3s;
+
+      &:hover {
+        transition: 0.3s;
+        background-color: var(--color-spring-green);
+        color: var(--color-black);
       }
     }
   }
