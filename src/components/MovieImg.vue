@@ -20,7 +20,7 @@ export default {
       type: String,
       default: 'img-movie-poster',
       validator: function(value) {
-        return ['img-movie-poster', 'img-movie-backdrop', 'img-movie-thumbnail', 'img-movie-trailer'].indexOf(value) !== -1
+        return ['img-movie-poster', 'img-movie-popular', 'img-movie-backdrop', 'img-movie-thumbnail', 'img-movie-trailer'].indexOf(value) !== -1
       }
     }
   },
@@ -37,6 +37,10 @@ export default {
   width: 100%;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+}
+.img-movie-popular {
+  width: 40px;
+  height: 60px;
 }
 .img-movie-backdrop {
   border-radius: 4px;

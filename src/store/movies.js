@@ -3,7 +3,8 @@ import service from './services/service'
 const state = {
   movies: [],
   movieDetails: [],
-  movieVideos: []
+  movieVideos: [],
+  popularMovies: []
 }
 
 const getters = {
@@ -19,6 +20,10 @@ const getters = {
     var size = Object.keys(state.movieVideos).length
     var random = Math.floor(Math.random() * size)
     return state.movieVideos[random].key
+  },
+
+  popularMovies(state) {
+    return state.popularMovies
   }
 }
 
@@ -33,6 +38,10 @@ const mutations = {
 
   setMovieVideos(state, payload) {
     state.movieVideos = payload
+  },
+
+  setPopularMovies(state, payload) {
+    state.popularMovies = payload
   }
 }
 
@@ -52,6 +61,12 @@ const actions = {
   fetchMovieVideos(context, movieId) {
     return service.fetchMovieVideos(movieId).then((response) => {
       context.commit('setMovieVideos', response.data.results)
+    })
+  },
+
+  fetchPopularMovies(context) {
+    return service.fetchPopularMovies().then((response) => {
+      context.commit('setPopularMovies', response.data.results)
     })
   }
 }
