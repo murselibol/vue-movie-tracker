@@ -21,8 +21,8 @@ html {
 body {
   font-size: 1rem;
   font-family: 'IBM Plex Sans', Roboto, Helvetica, Arial, sans-serif;
-  background-color: #000;
-  color: #fff;
+  background-color: var(--color-black);
+  color: var(--color-white);
 }
 
 h1,
@@ -51,10 +51,10 @@ img {
 svg {
   width: 18px;
   height: 18px;
-  fill: white;
+  fill: var(--color-white);
 }
 input {
-  color: white;
+  color: var(--color-white);
 }
 input:focus {
   outline: none;
@@ -78,7 +78,7 @@ input:focus {
 button {
   background-color: transparent;
   cursor: pointer;
-  color: white;
+  color: var(--color-white);
   font-size: 1rem;
 }
 

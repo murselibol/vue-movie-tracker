@@ -48,7 +48,7 @@ export default {
       font-weight: 500;
       padding-left: 25px;
       padding-right: 25px;
-      color: white;
+      color: var(--color-white);
       background-color: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 40px;

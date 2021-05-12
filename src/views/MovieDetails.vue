@@ -24,7 +24,7 @@
         </div>
       </div>
     </section>
-
+    <hr />
     <section class="video-play">
       <a href=""><h5 class="video-player-name">Player1</h5></a>
       <MovieVideo :moviePath="movieVideoKey" />
@@ -92,7 +92,7 @@ export default {
       return this.$store.dispatch('fetchMovieDetails', this.movieId)
     },
     fetchMovieVideos() {
-      this.$store.dispatch('fetchMovieVideos', this.movieId)
+      return this.$store.dispatch('fetchMovieVideos', this.movieId)
     },
     openTrailerPlayer() {
       this.isOpenTrailer = true
@@ -180,10 +180,15 @@ export default {
     }
   }
 
+  hr {
+    width: 100%;
+    height: 1px;
+    background: var(--color-tundora);
+  }
+
   .video-play {
     padding-top: 40px;
     padding-bottom: 40px;
-    border-top: 1px solid #444;
 
     .video-player-name {
       margin-bottom: 10px;

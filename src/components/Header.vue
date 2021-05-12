@@ -232,7 +232,7 @@ export default {
     }
 
     .button-register {
-      border: 1px solid white;
+      border: 1px solid var(--color-white);
       padding: 8px 16px;
       border-radius: 99px;
       transition: 0.15s;
