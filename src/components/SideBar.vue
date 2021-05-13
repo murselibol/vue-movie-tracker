@@ -3,13 +3,13 @@
     <h3 class="sidebar-title">Most populer movies</h3>
     <hr class="hr-20" />
     <div class="card-container" v-for="movie in popularMovies" :key="movie.id">
-      <router-link to="/">
+      <router-link :to="'/movie/' + movie.id">
         <div class="card">
           <MovieImg :imgPath="movie.poster_path" :imgAlt="movie.title" class="img-movie-popular " />
           <div class="card-body">
             <h5 class="card-title">{{ movie.title | maxCharacter }}</h5>
             <span class="card-item"> IMDB {{ movie.vote_average.toFixed(1) }} </span>
-            <span class="card-item"> 1h 37m </span>
+            <span class="card-item"> {{ movie.popularity | mostWatched(movie.popularity) }} </span>
             <span class="card-item"> {{ movie.release_date.substring(0, 4) }} </span>
           </div>
         </div>
@@ -24,11 +24,15 @@ import MovieImg from './MovieImg'
 
 export default {
   name: 'SideBar',
+
   components: {
     MovieImg
   },
   computed: {
     ...mapGetters(['popularMovies'])
+  },
+  watch: {
+    movie_id: 'moviePath'
   },
   filters: {
     maxCharacter(movie_title) {
@@ -39,6 +43,13 @@ export default {
       const minutes = movie_time - 60 * hours
 
       return ` ${hours}h ${minutes}m`
+    },
+
+    mostWatched(watched_count) {
+      const str1 = String(watched_count)
+      const str2 = str1.replace('.', '')
+      const str = str2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+      return str
     }
   },
   methods: {
