@@ -4,7 +4,8 @@ const state = {
   movies: [],
   movieDetails: [],
   movieVideos: [],
-  popularMovies: []
+  popularMovies: [],
+  movieSearch: []
 }
 
 const getters = {
@@ -24,6 +25,10 @@ const getters = {
 
   popularMovies(state) {
     return state.popularMovies
+  },
+
+  movieSearch(state) {
+    return state.movieSearch
   }
 }
 
@@ -42,6 +47,10 @@ const mutations = {
 
   setPopularMovies(state, payload) {
     state.popularMovies = payload
+  },
+
+  setMovieSearch(state, movieName) {
+    state.movieSearch = movieName
   }
 }
 
@@ -67,6 +76,12 @@ const actions = {
   fetchPopularMovies(context) {
     return service.fetchPopularMovies().then((response) => {
       context.commit('setPopularMovies', response.data.results)
+    })
+  },
+
+  fetchMovieSearch(context, movieName) {
+    return service.fetchMovieSearch(movieName).then((response) => {
+      context.commit('setMovieSearch', response.data.results)
     })
   }
 }

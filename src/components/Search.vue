@@ -1,9 +1,10 @@
 <template>
   <section class="search" :class="{ 'menu-show-search': isMenuActive }">
-    <form class="form-search">
-      <input type="text" name="search" placeholder="search..." />
+    <form @submit.prevent="handleSubmit()" class="form-search">
+      <input v-model="searchName" type="text" name="search" placeholder="search..." />
       <IconSearch class="icon-search" />
     </form>
+    <h3 class="searchResult" v-if="searchControl">＂ {{ $route.query.search }} ＂ için arama sonuçları</h3>
   </section>
 </template>
 
@@ -18,6 +19,7 @@ export default {
   },
   data() {
     return {
+      searchName: '',
       isMenuActive: true
     }
   },
@@ -25,6 +27,28 @@ export default {
     eventBus.$on('menuStatus', (status) => {
       this.isMenuActive = status
     })
+  },
+  computed: {
+    keepParams() {
+      return this.$route.fullPath
+    },
+    searchControl() {
+      if (this.$route.query.search === undefined) {
+        return false
+      }
+      return true
+    }
+  },
+  watch: {
+    keepParams() {
+      return (this.searchName = '')
+    }
+  },
+
+  methods: {
+    handleSubmit() {
+      this.$router.push({ name: 'SearchMovie', query: { search: this.searchName } })
+    }
   }
 }
 </script>
@@ -32,8 +56,10 @@ export default {
 <style lang="scss" scoped>
 .search {
   display: none;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+
   padding-top: 30px;
   padding-bottom: 30px;
 
@@ -65,6 +91,10 @@ export default {
       -webkit-transform: translateY(-50%);
       transform: translateY(-50%);
     }
+  }
+
+  .searchResult {
+    margin-top: 15px;
   }
 }
 

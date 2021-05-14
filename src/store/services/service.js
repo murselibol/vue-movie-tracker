@@ -17,11 +17,11 @@ export default {
     return tmdb.get(`/movie/${movieId}/videos${apiKey}`)
   },
 
-  fetchMovieSearch(movieSearch) {
-    return tmdb.get(`/search/movie${apiKey}&query=${movieSearch}`)
-  },
-
   fetchPopularMovies() {
     return tmdb.get(`/movie/popular${apiKey}`)
+  },
+
+  fetchMovieSearch(movieName) {
+    return tmdb.get(`/search/movie${apiKey}&query=${movieName}`)
   }
 }
