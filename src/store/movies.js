@@ -20,7 +20,11 @@ const getters = {
   movieVideoKey(state) {
     var size = Object.keys(state.movieVideos).length
     var random = Math.floor(Math.random() * size)
-    return state.movieVideos[random].key
+    if (size === 0) {
+      return null
+    } else {
+      return state.movieVideos[random].key
+    }
   },
 
   popularMovies(state) {

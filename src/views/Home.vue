@@ -49,6 +49,7 @@ export default {
   .movies {
     display: flex;
     flex-wrap: wrap;
+    align-items: baseline;
     gap: var(--movies-gap);
   }
 }

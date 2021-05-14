@@ -9,13 +9,16 @@ export default {
   name: 'MovieVideo',
   props: {
     moviePath: {
-      type: String,
+      value: [String, null, undefined],
       required: true
     }
   },
 
   computed: {
     videoPath() {
+      if (this.moviePath == null || this.moviePath == undefined) {
+        return `https://www.youtube.com/embed/ZWcRmoLqhkc`
+      }
       return `https://www.youtube.com/embed/${this.moviePath}`
     }
   }

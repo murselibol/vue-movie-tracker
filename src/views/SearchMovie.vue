@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container">
+  <div class="main-container " v-if="isLoading">
     <section class="movies">
       <MovieCard v-for="movie in movieSearch" :key="movie.id" :movie="movie" />
     </section>
@@ -14,6 +14,11 @@ import SideBar from '../components/SideBar'
 
 export default {
   name: 'SearchMovie',
+  data() {
+    return {
+      isLoading: true
+    }
+  },
   components: {
     MovieCard,
     SideBar

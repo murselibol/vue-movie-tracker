@@ -9,11 +9,11 @@ export default {
   name: 'MovieImg',
   props: {
     imgPath: {
-      type: String,
+      value: [String, null],
       required: true
     },
     imgAlt: {
-      type: String,
+      value: [String, null],
       required: true
     },
     imgClass: {
@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     posterPath() {
-      return `https://image.tmdb.org/t/p/w500/${this.imgPath}`
+      return this.imgPath != null && this.imgAlt != null ? `https://image.tmdb.org/t/p/w500/${this.imgPath}` : 'https://lh3.googleusercontent.com/proxy/WqOpJahIkdPuKXnmEpZylEwnzWSMn3V3y_lkwA3XLaG5lMpKSABKgaLS1AJWVw8EmumLPB1S1wH1jqI_PO2LtQnMOAjsXIBXUboK2mtWVA'
     }
   }
 }
@@ -37,6 +37,9 @@ export default {
   width: 100%;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+  img {
+    align-items: center;
+  }
 }
 .img-movie-popular {
   width: 40px;

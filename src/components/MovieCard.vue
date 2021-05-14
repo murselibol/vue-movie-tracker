@@ -47,10 +47,9 @@ export default {
   border-radius: 4px;
   background-color: var(--color-movie-card-title-bg);
   transition: 0.2s;
-  // box-shadow: 0px 0px 13px 2px rgba(255, 255, 255, 0.2);
+
   &:hover {
     box-shadow: 0px 0px 13px 2px rgba(255, 255, 255, 0.78);
-    // box-shadow: 0px 0px 13px 2px rgba(163, 163, 163, 0.78);
     transition: 0.2s;
   }
 

@@ -27,6 +27,8 @@
     <hr />
     <section class="video-play">
       <a href=""><h5 class="video-player-name">Player1</h5></a>
+      <a href=""><h5 class="video-player-name">Player2</h5></a>
+      <a href=""><h5 class="video-player-name">Player3</h5></a>
       <MovieVideo :moviePath="movieVideoKey" />
     </section>
   </div>
@@ -84,7 +86,10 @@ export default {
   },
 
   watch: {
-    $route: 'fetchMovieDetails'
+    $route() {
+      this.fetchMovieDetails()
+      this.fetchMovieVideos()
+    }
   },
 
   methods: {
@@ -190,14 +195,16 @@ export default {
     padding-top: 40px;
     padding-bottom: 40px;
 
+    a:not(:last-child) {
+      margin-right: 12px;
+    }
+
     .video-player-name {
       margin-bottom: 10px;
       display: inline-block;
       border: 1.2px solid var(--color-spring-green);
       border-radius: 5px;
       padding: 10px;
-      transition: 0.3s;
-
       &:hover {
         transition: 0.3s;
         background-color: var(--color-spring-green);
