@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     posterPath() {
-      return this.imgPath != null && this.imgAlt != null ? `https://image.tmdb.org/t/p/w500/${this.imgPath}` : 'https://lh3.googleusercontent.com/proxy/WqOpJahIkdPuKXnmEpZylEwnzWSMn3V3y_lkwA3XLaG5lMpKSABKgaLS1AJWVw8EmumLPB1S1wH1jqI_PO2LtQnMOAjsXIBXUboK2mtWVA'
+      return this.imgPath != null && this.imgAlt != null ? `https://image.tmdb.org/t/p/w500/${this.imgPath}` : 'https://x.resim-yukle.com/h6ud4'
     }
   }
 }

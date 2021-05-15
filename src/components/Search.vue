@@ -65,7 +65,11 @@ export default {
 
   .form-search {
     position: relative;
-    width: 500px;
+    width: 100%;
+
+    @include mq('--576') {
+      width: 500px;
+    }
 
     input {
       width: 100%;
@@ -95,6 +99,11 @@ export default {
 
   .searchResult {
     margin-top: 15px;
+    font-size: 1rem;
+
+    @include mq('--576') {
+      font-size: 1.17rem;
+    }
   }
 }
 
