@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       searchName: '',
-      isMenuActive: true
+      isMenuActive: false
     }
   },
   created() {
@@ -48,6 +48,8 @@ export default {
   methods: {
     handleSubmit() {
       this.$router.push({ name: 'SearchMovie', query: { search: this.searchName } })
+      this.isMenuActive = !this.isMenuActive
+      eventBus.$emit('menuStatus', this.isMenuActive)
     }
   }
 }

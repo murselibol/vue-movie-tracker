@@ -26,6 +26,9 @@ export default {
   },
   computed: {
     posterPath() {
+      if (this.imgClass == 'img-movie-trailer') {
+        return this.imgPath != null && this.imgAlt != null ? `https://image.tmdb.org/t/p/w500/${this.imgPath}` : 'https://x.resim-yukle.com/TahLe'
+      }
       return this.imgPath != null && this.imgAlt != null ? `https://image.tmdb.org/t/p/w500/${this.imgPath}` : 'https://x.resim-yukle.com/h6ud4'
     }
   }

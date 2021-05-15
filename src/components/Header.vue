@@ -70,12 +70,15 @@ export default {
       isMenuActive: false
     }
   },
+  created() {
+    eventBus.$on('menuStatus', (status) => {
+      this.isMenuActive = status
+      this.bodyScroll()
+    })
+  },
 
   methods: {
-    displayMenu() {
-      this.isMenuActive = !this.isMenuActive
-      eventBus.$emit('menuStatus', this.isMenuActive)
-
+    bodyScroll() {
       if (this.isMenuActive) {
         document.body.classList.add('closeScroll')
         document.body.classList.remove('openScroll')
@@ -83,6 +86,11 @@ export default {
         document.body.classList.add('openScroll')
         document.body.classList.remove('closeScroll')
       }
+    },
+    displayMenu() {
+      this.isMenuActive = !this.isMenuActive
+      eventBus.$emit('menuStatus', this.isMenuActive)
+      this.bodyScroll()
     }
   }
 }
