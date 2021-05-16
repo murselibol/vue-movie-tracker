@@ -1,8 +1,8 @@
 <template>
   <div class="main-container" v-if="isLoading">
-    <div class="backdrop-img-container">
+    <section class="backdrop-img-container">
       <MovieImg :imgPath="movie.backdrop_path" :imgAlt="movie.title" imgClass="img-movie-backdrop" />
-    </div>
+    </section>
     <section class="movie-details">
       <MovieImg :imgPath="movie.poster_path" :imgAlt="movie.title" imgClass="img-movie-thumbnail" />
       <div class="movie-info">
@@ -31,6 +31,13 @@
       <a href=""><h5 class="video-player-name">Player3</h5></a>
       <MovieVideo :moviePath="movieVideoKey" />
     </section>
+    <section class="carousel-container" v-if="similarIsEmpty">
+      <h3 class="carousel-main-title">
+        Similar Movies
+        <hr />
+      </h3>
+      <MovieCarousel :movieSimilar="movieSimilar" />
+    </section>
   </div>
 </template>
 
@@ -38,6 +45,7 @@
 import { mapGetters } from 'vuex'
 import MovieImg from '../components/MovieImg'
 import MovieVideo from '../components/MovieVideo'
+import MovieCarousel from '../components/MovieCarousel'
 import IconStar from '../assets/icons/star.svg'
 import IconCalendar from '../assets/icons/calendar.svg'
 import IconClock from '../assets/icons/clock.svg'
@@ -49,6 +57,7 @@ export default {
   components: {
     MovieImg,
     MovieVideo,
+    MovieCarousel,
     IconStar,
     IconCalendar,
     IconClock,
@@ -64,13 +73,15 @@ export default {
   created() {
     this.fetchMovieVideos()
 
+    this.fetchMovieSimilar()
+
     return this.fetchMovieDetails().then(() => {
       this.isLoading = true
     })
   },
 
   computed: {
-    ...mapGetters(['movie', 'movieVideoKey']),
+    ...mapGetters(['movie', 'movieVideoKey', 'movieSimilar']),
 
     movieId() {
       return this.$route.params.id
@@ -82,6 +93,14 @@ export default {
       const minutes = runtime - 60 * hours
 
       return ` ${hours}h ${minutes}m`
+    },
+
+    similarIsEmpty() {
+      if (this.movieSimilar.length > 0) {
+        return true
+      } else {
+        return false
+      }
     }
   },
 
@@ -89,6 +108,7 @@ export default {
     $route() {
       this.fetchMovieDetails()
       this.fetchMovieVideos()
+      this.fetchMovieSimilar()
     }
   },
 
@@ -98,6 +118,9 @@ export default {
     },
     fetchMovieVideos() {
       return this.$store.dispatch('fetchMovieVideos', this.movieId)
+    },
+    fetchMovieSimilar() {
+      return this.$store.dispatch('fetchMovieSimilar', this.movieId)
     },
     openTrailerPlayer() {
       this.isOpenTrailer = true
@@ -202,13 +225,30 @@ export default {
     .video-player-name {
       margin-bottom: 10px;
       display: inline-block;
-      border: 1.2px solid var(--color-spring-green);
+      border: 1.2px solid var(--color-main-green);
       border-radius: 5px;
       padding: 10px;
+      transition: 0.3s ease;
+
       &:hover {
-        transition: 0.3s;
-        background-color: var(--color-spring-green);
+        background-color: var(--color-main-green);
         color: var(--color-black);
+      }
+    }
+  }
+
+  .carousel-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    .carousel-main-title {
+      font-size: 2rem;
+      cursor: pointer;
+      user-select: none;
+      margin-bottom: 20px;
+
+      hr {
+        margin-top: 5px;
       }
     }
   }

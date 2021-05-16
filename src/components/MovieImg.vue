@@ -20,7 +20,7 @@ export default {
       type: String,
       default: 'img-movie-poster',
       validator: function(value) {
-        return ['img-movie-poster', 'img-movie-popular', 'img-movie-backdrop', 'img-movie-thumbnail', 'img-movie-trailer'].indexOf(value) !== -1
+        return ['img-movie-poster', 'img-movie-popular', 'img-movie-backdrop', 'img-movie-thumbnail', 'img-movie-trailer', 'img-carousel'].indexOf(value) !== -1
       }
     }
   },
@@ -40,10 +40,8 @@ export default {
   width: 100%;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  img {
-    align-items: center;
-  }
 }
+
 .img-movie-popular {
   width: 40px;
   height: 60px;
@@ -66,6 +64,17 @@ export default {
   @include mq('--768') {
     border-radius: 2px;
     width: 250px;
+  }
+}
+
+.img-carousel {
+  width: 100%;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  transition: transform 0.5s ease;
+
+  &:hover {
+    transform: scale(1.3);
   }
 }
 </style>

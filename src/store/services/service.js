@@ -23,5 +23,9 @@ export default {
 
   fetchMovieSearch(movieName) {
     return tmdb.get(`/search/movie${apiKey}&query=${movieName}`)
+  },
+
+  fetchMovieSimilar(movieId) {
+    return tmdb.get(`/movie/${movieId}/similar${apiKey}`)
   }
 }
