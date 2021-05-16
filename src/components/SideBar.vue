@@ -89,11 +89,10 @@ export default {
     align-items: center;
     column-gap: 10px;
     margin-bottom: 12px;
-    transition: 0.2s;
+    transition: 0.2s ease;
 
     &:hover {
-      color: var(--color-spring-green);
-      transition: 0.2s;
+      color: var(--color-main-green);
     }
 
     .card-body {

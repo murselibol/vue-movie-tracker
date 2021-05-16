@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <router-link to="/" class="logo">mooviex</router-link>
+    <router-link to="/" class="logo">moovue</router-link>
     <button type="button" @click="displayMenu()" class="header-switch">
       <IconMenu class="icon-menu" />
     </button>
@@ -89,7 +89,7 @@ export default {
     },
     displayMenu() {
       this.isMenuActive = !this.isMenuActive
-      eventBus.$emit('menuStatus', this.isMenuActive)
+      // eventBus.$emit('menuStatus', this.isMenuActive)
       this.bodyScroll()
     }
   }
@@ -153,10 +153,9 @@ export default {
   .login,
   .button-register {
     font-size: 1.125rem;
-    transition: 0.15s;
+    transition: 0.15s ease;
     &:hover {
-      color: var(--color-spring-green);
-      transition: 0.15s;
+      color: var(--color-main-green);
     }
   }
 
@@ -243,11 +242,10 @@ export default {
       border: 1px solid var(--color-white);
       padding: 8px 16px;
       border-radius: 99px;
-      transition: 0.15s;
+      transition: 0.15s ease;
 
       &:hover {
-        border-color: var(--color-spring-green);
-        transition: 0.15s;
+        border-color: var(--color-main-green);
       }
     }
   }

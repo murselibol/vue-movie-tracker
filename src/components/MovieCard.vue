@@ -46,11 +46,10 @@ export default {
 .movie-card {
   border-radius: 4px;
   background-color: var(--color-movie-card-title-bg);
-  transition: 0.2s;
+  transition: 0.2s ease;
 
   &:hover {
     box-shadow: 0px 0px 13px 2px rgba(255, 255, 255, 0.78);
-    transition: 0.2s;
   }
 
   .card-img {
@@ -96,7 +95,7 @@ export default {
       display: block;
       width: 100%;
 
-      transition: 0.3s;
+      transition: 0.3s ease;
 
       @include mq('--576') {
         width: auto;
@@ -106,8 +105,7 @@ export default {
       }
 
       &:hover {
-        color: var(--color-spring-green);
-        transition: 0.3s;
+        color: var(--color-main-green);
       }
     }
   }
