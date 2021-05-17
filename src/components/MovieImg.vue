@@ -71,10 +71,12 @@ export default {
   width: 100%;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  transition: transform 0.5s ease;
 
-  &:hover {
-    transform: scale(1.3);
+  @include mq('--1200') {
+    transition: transform 0.5s ease;
+    &:hover {
+      transform: scale(1.3);
+    }
   }
 }
 </style>

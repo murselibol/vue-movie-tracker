@@ -31,12 +31,14 @@
       <a href=""><h5 class="video-player-name">Player3</h5></a>
       <MovieVideo :moviePath="movieVideoKey" />
     </section>
-    <section class="carousel-container" v-if="similarIsEmpty">
+    <section class="carousel-container">
+      <!-- <section class="carousel-container" v-if="similarIsEmpty"> -->
       <h3 class="carousel-main-title">
-        Similar Movies
+        {{ carouselTitle }} Movies
         <hr />
       </h3>
-      <MovieCarousel :movieSimilar="movieSimilar" />
+
+      <MovieCarousel :movieSimilar="similarORpopularMovies" />
     </section>
   </div>
 </template>
@@ -67,7 +69,8 @@ export default {
   data() {
     return {
       isLoading: false,
-      isOpenTrailer: false
+      isOpenTrailer: false,
+      carouselTitle: 'Similar'
     }
   },
   created() {
@@ -81,7 +84,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['movie', 'movieVideoKey', 'movieSimilar']),
+    ...mapGetters(['movie', 'movieVideoKey', 'movieSimilar', 'popularMovies']),
 
     movieId() {
       return this.$route.params.id
@@ -95,12 +98,8 @@ export default {
       return ` ${hours}h ${minutes}m`
     },
 
-    similarIsEmpty() {
-      if (this.movieSimilar.length > 0) {
-        return true
-      } else {
-        return false
-      }
+    similarORpopularMovies() {
+      return this.movieGenre()
     }
   },
 
@@ -109,6 +108,7 @@ export default {
       this.fetchMovieDetails()
       this.fetchMovieVideos()
       this.fetchMovieSimilar()
+      this.movieGenre()
     }
   },
 
@@ -122,6 +122,20 @@ export default {
     fetchMovieSimilar() {
       return this.$store.dispatch('fetchMovieSimilar', this.movieId)
     },
+    fetchPopularMovies() {
+      return this.$store.dispatch('fetchPopularMovies', this.movieId)
+    },
+    movieGenre() {
+      if (this.movieSimilar.length > 0) {
+        this.carouselTitle = 'Similar'
+        return this.movieSimilar
+      } else {
+        this.fetchPopularMovies()
+        this.carouselTitle = 'Popular'
+        return this.popularMovies
+      }
+    },
+
     openTrailerPlayer() {
       this.isOpenTrailer = true
     }
