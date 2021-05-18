@@ -27,7 +27,7 @@
         <IconGenres class="icon-genres" />
         <button class="nav-item-text dropbtn ">Genres</button>
         <IconDownArrow class="icon-down-arrow" />
-        <div class="dropdown-content">
+        <div class="dropdown-content" @click="displayDropdownMenu()">
           <router-link to="/movies/adventure">Adventure</router-link>
           <router-link to="/movies/animation">Animation</router-link>
           <router-link to="/movies/comedy">Comedy</router-link>
@@ -75,8 +75,7 @@ export default {
   },
   data() {
     return {
-      isMenuActive: false,
-      isDropClose: true
+      isMenuActive: false
     }
   },
 
@@ -85,24 +84,6 @@ export default {
       this.isMenuActive = status
       this.bodyScroll()
     })
-  },
-
-  updated() {
-    console.log('update')
-    this.isDropClose = false
-  },
-  computed: {
-    followDrop() {
-      if (this.isDropClose) {
-        return {
-          display: 'block'
-        }
-      } else {
-        return {
-          display: 'none'
-        }
-      }
-    }
   },
 
   methods: {
@@ -124,6 +105,12 @@ export default {
       this.isMenuActive = !this.isMenuActive
       // eventBus.$emit('menuStatus', this.isMenuActive)
       this.bodyScroll()
+    },
+
+    displayDropdownMenu() {
+      this.isMenuActive = !this.isMenuActive
+      document.body.classList.add('openScroll')
+      document.body.classList.remove('closeScroll')
     }
   }
 }
