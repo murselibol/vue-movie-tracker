@@ -11,6 +11,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/movies/:genre',
+    name: 'MoviesGenre',
+    component: () => import(/* webpackChunkName: "MoviesGenre" */ '../views/MoviesGenre.vue')
+  },
+  {
     path: '/movie/:id',
     name: 'MovieDetails',
     component: () => import(/* webpackChunkName: "MovieDetails" */ '../views/MovieDetails.vue')
@@ -18,7 +23,7 @@ const routes = [
   {
     path: '/movies',
     name: 'SearchMovie',
-    component: () => import(/* webpackChunkName: "MovieDetails" */ '../views/SearchMovie.vue')
+    component: () => import(/* webpackChunkName: "SearchMovie" */ '../views/SearchMovie.vue')
   }
 ]
 

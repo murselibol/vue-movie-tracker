@@ -22,11 +22,19 @@
         <IconBlueTV class="icon-bluetv" />
         <span class="nav-item-text">BluTV</span>
       </router-link>
-      <router-link to="/" class="nav-item">
+
+      <div class="nav-item dropdown">
         <IconGenres class="icon-genres" />
-        <span class="nav-item-text">Genres</span>
+        <button class="nav-item-text dropbtn ">Genres</button>
         <IconDownArrow class="icon-down-arrow" />
-      </router-link>
+        <div class="dropdown-content">
+          <router-link to="/movies/adventure">Adventure</router-link>
+          <router-link to="/movies/animation">Animation</router-link>
+          <router-link to="/movies/comedy">Comedy</router-link>
+          <router-link to="/movies/horror">Horror</router-link>
+          <router-link to="/movies/romance">Romance</router-link>
+        </div>
+      </div>
     </nav>
 
     <div class="header-right" :class="{ 'menu-show': isMenuActive }">
@@ -67,9 +75,11 @@ export default {
   },
   data() {
     return {
-      isMenuActive: false
+      isMenuActive: false,
+      isDropClose: true
     }
   },
+
   created() {
     eventBus.$on('menuStatus', (status) => {
       this.isMenuActive = status
@@ -77,7 +87,30 @@ export default {
     })
   },
 
+  updated() {
+    console.log('update')
+    this.isDropClose = false
+  },
+  computed: {
+    followDrop() {
+      if (this.isDropClose) {
+        return {
+          display: 'block'
+        }
+      } else {
+        return {
+          display: 'none'
+        }
+      }
+    }
+  },
+
   methods: {
+    closee() {
+      console.log('mghod')
+      this.isDropClose = false
+    },
+
     bodyScroll() {
       if (this.isMenuActive) {
         document.body.classList.add('closeScroll')
@@ -111,6 +144,9 @@ export default {
 
   svg {
     margin-right: 10px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .header-switch {
@@ -208,8 +244,52 @@ export default {
 
       .nav-item-text {
         display: inline-block;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        font-size: 1.125rem;
+      }
+    }
+
+    .dropdown {
+      display: inline-block;
+      &:hover {
+        .dropbtn {
+          transition: 0.15s ease;
+          color: var(--color-main-green);
+        }
+        .dropdown-content {
+          display: block;
+        }
+      }
+    }
+
+    .dropdown-content {
+      display: block;
+      position: absolute;
+      min-width: 160px;
+      border-radius: 4px;
+      background-color: inherit;
+      z-index: 1;
+
+      @include mq('--1200') {
+        background-color: var(--color-movie-card-title-bg);
+        display: none;
+      }
+    }
+
+    .dropdown-content a {
+      color: var(--color-white);
+      padding: 6px 14px;
+      display: block;
+      transition: 0.2s ease;
+      margin-left: 18px;
+
+      @include mq('--1200') {
+        display: block;
+        margin-left: 0;
+      }
+
+      &:hover {
+        color: var(--color-main-green);
+        background-color: var(--color-mine-shaft);
       }
     }
   }

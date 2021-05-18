@@ -2,10 +2,11 @@ import service from './services/service'
 
 const state = {
   movies: [],
+  popularMovies: [],
+  moviesGenre: [],
+  movieSearch: [],
   movieDetails: [],
   movieVideos: [],
-  popularMovies: [],
-  movieSearch: [],
   movieSimilar: []
 }
 
@@ -14,8 +15,24 @@ const getters = {
     return state.movies
   },
 
+  popularMovies(state) {
+    return state.popularMovies
+  },
+
+  moviesGenre(state) {
+    return state.moviesGenre
+  },
+
+  movieSearch(state) {
+    return state.movieSearch
+  },
+
   movie(state) {
     return state.movieDetails
+  },
+
+  movieSimilar(state) {
+    return state.movieSimilar
   },
 
   movieVideoKey(state) {
@@ -26,18 +43,6 @@ const getters = {
     } else {
       return state.movieVideos[random].key
     }
-  },
-
-  popularMovies(state) {
-    return state.popularMovies
-  },
-
-  movieSearch(state) {
-    return state.movieSearch
-  },
-
-  movieSimilar(state) {
-    return state.movieSimilar
   }
 }
 
@@ -46,24 +51,28 @@ const mutations = {
     state.movies = movies
   },
 
-  setMovieDetails(state, payload) {
-    state.movieDetails = payload
-  },
-
-  setMovieVideos(state, payload) {
-    state.movieVideos = payload
-  },
-
   setPopularMovies(state, payload) {
     state.popularMovies = payload
+  },
+
+  setMoviesGenre(state, payload) {
+    state.moviesGenre = payload
   },
 
   setMovieSearch(state, movieName) {
     state.movieSearch = movieName
   },
 
+  setMovieDetails(state, payload) {
+    state.movieDetails = payload
+  },
+
   setMovieSimilar(state, payload) {
     state.movieSimilar = payload
+  },
+
+  setMovieVideos(state, payload) {
+    state.movieVideos = payload
   }
 }
 
@@ -74,21 +83,15 @@ const actions = {
     })
   },
 
-  fetchMovieDetails(context, movieId) {
-    return service.fetchMovieDetails(movieId).then((response) => {
-      context.commit('setMovieDetails', response.data)
-    })
-  },
-
-  fetchMovieVideos(context, movieId) {
-    return service.fetchMovieVideos(movieId).then((response) => {
-      context.commit('setMovieVideos', response.data.results)
-    })
-  },
-
   fetchPopularMovies(context) {
     return service.fetchPopularMovies().then((response) => {
       context.commit('setPopularMovies', response.data.results)
+    })
+  },
+
+  fetchMoviesGenre(context, movieGenreId) {
+    return service.fetchMoviesGenre(movieGenreId).then((response) => {
+      context.commit('setMoviesGenre', response.data.results)
     })
   },
 
@@ -98,9 +101,21 @@ const actions = {
     })
   },
 
+  fetchMovieDetails(context, movieId) {
+    return service.fetchMovieDetails(movieId).then((response) => {
+      context.commit('setMovieDetails', response.data)
+    })
+  },
+
   fetchMovieSimilar(context, movieId) {
     return service.fetchMovieSimilar(movieId).then((response) => {
       context.commit('setMovieSimilar', response.data.results)
+    })
+  },
+
+  fetchMovieVideos(context, movieId) {
+    return service.fetchMovieVideos(movieId).then((response) => {
+      context.commit('setMovieVideos', response.data.results)
     })
   }
 }

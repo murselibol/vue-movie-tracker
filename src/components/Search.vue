@@ -86,9 +86,9 @@ export default {
       border-radius: 40px;
     }
 
-    @include mq('--1200') {
-      z-index: 1;
-    }
+    // @include mq('--1200') {
+    //   z-index: 1;
+    // }
 
     .icon-search {
       position: absolute;
