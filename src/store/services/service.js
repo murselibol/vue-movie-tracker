@@ -1,38 +1,38 @@
 import axios from 'axios'
-const apiKey = '?api_key=9923e05df8d5661186572a8659e8575d'
+require('dotenv').config()
 const tmdb = axios.create({
   baseURL: 'https://api.themoviedb.org/3/',
-  params: { api_key: '9923e05df8d5661186572a8659e8575d' }
+  params: { api_key: process.env.VUE_APP_API_KEY }
 })
 
 export default {
   fetchMovies() {
-    return tmdb.get(`/movie/now_playing${apiKey}`)
+    console.log(process.env)
+    return tmdb.get(`/movie/now_playing`)
   },
 
   fetchPopularMovies() {
-    return tmdb.get(`/movie/popular${apiKey}`)
+    return tmdb.get(`/movie/popular`)
   },
 
   fetchMoviesGenre(movieGenreId) {
-    let currentdate = new Date()
-    let today = currentdate.getFullYear() + '-' + (currentdate.getMonth() + 1 < 10 ? '0' + (currentdate.getMonth() + 1) : currentdate.getMonth() + 1) + '-' + currentdate.getDate()
-    return tmdb.get(`/discover/movie${apiKey}&sort_by=primary_release_date.desc&primary_release_date.lte=${today}&vote_average.gte=1.0&with_genres=${movieGenreId}`)
+    var todayDate = new Date().toISOString().slice(0, 10)
+    return tmdb.get(`/discover/movie`, { params: { sort_by: 'primary_release_date.desc', 'primary_release_date.lte': todayDate, 'vote_average.gte': '1.0', with_genres: movieGenreId } })
   },
 
   fetchMovieSearch(movieName) {
-    return tmdb.get(`/search/movie${apiKey}&query=${movieName}`)
+    return tmdb.get(`/search/movie`, { params: { query: movieName } })
   },
 
   fetchMovieDetails(movieId) {
-    return tmdb.get(`/movie/${movieId}${apiKey}`)
+    return tmdb.get(`/movie/${movieId}`)
   },
 
   fetchMovieSimilar(movieId) {
-    return tmdb.get(`/movie/${movieId}/similar${apiKey}`)
+    return tmdb.get(`/movie/${movieId}/similar`)
   },
 
   fetchMovieVideos(movieId) {
-    return tmdb.get(`/movie/${movieId}/videos${apiKey}`)
+    return tmdb.get(`/movie/${movieId}/videos`)
   }
 }

@@ -7,7 +7,7 @@
       <MovieImg :imgPath="movie.poster_path" :imgAlt="movie.title" imgClass="img-movie-thumbnail" />
       <div class="movie-info">
         <h2 class="movie-title">{{ movie.title }}</h2>
-        <span class="movie-genres" v-for="genre in movie.genres" :key="genre.id"> {{ genre.name }}, </span>
+        <span class="movie-genres" v-for="(genre, index) in movie.genres" :key="genre.id"> {{ genre.name }}<span v-if="index != movie.genres.length - 1">, </span> </span>
         <article class="movie-overview">{{ movie.overview }}</article>
         <div class="detail-items">
           <span class="detail-item"><IconStar /> {{ movie.vote_average }} </span>

@@ -77,46 +77,67 @@ const mutations = {
 }
 
 const actions = {
-  fetchMovies(context) {
-    return service.fetchMovies().then((response) => {
+  async fetchMovies(context) {
+    try {
+      const response = await service.fetchMovies()
       context.commit('setMovies', response.data.results)
-    })
+    } catch (err) {
+      console.log(err)
+    }
   },
 
-  fetchPopularMovies(context) {
-    return service.fetchPopularMovies().then((response) => {
+  async fetchPopularMovies(context) {
+    try {
+      const response = await service.fetchPopularMovies()
       context.commit('setPopularMovies', response.data.results)
-    })
+    } catch (err) {
+      console.log(err)
+    }
   },
 
-  fetchMoviesGenre(context, movieGenreId) {
-    return service.fetchMoviesGenre(movieGenreId).then((response) => {
+  async fetchMoviesGenre(context, movieGenreId) {
+    try {
+      const response = await service.fetchMoviesGenre(movieGenreId)
       context.commit('setMoviesGenre', response.data.results)
-    })
+    } catch (err) {
+      console.log(err)
+    }
   },
 
-  fetchMovieSearch(context, movieName) {
-    return service.fetchMovieSearch(movieName).then((response) => {
+  async fetchMovieSearch(context, movieName) {
+    try {
+      const response = await service.fetchMovieSearch(movieName)
       context.commit('setMovieSearch', response.data.results)
-    })
+    } catch (err) {
+      console.log(err)
+    }
   },
 
-  fetchMovieDetails(context, movieId) {
-    return service.fetchMovieDetails(movieId).then((response) => {
+  async fetchMovieDetails(context, movieId) {
+    try {
+      const response = await service.fetchMovieDetails(movieId)
       context.commit('setMovieDetails', response.data)
-    })
+    } catch (err) {
+      console.log(err)
+    }
   },
 
-  fetchMovieSimilar(context, movieId) {
-    return service.fetchMovieSimilar(movieId).then((response) => {
+  async fetchMovieSimilar(context, movieId) {
+    try {
+      const response = await service.fetchMovieSimilar(movieId)
       context.commit('setMovieSimilar', response.data.results)
-    })
+    } catch (err) {
+      console.log(err)
+    }
   },
 
-  fetchMovieVideos(context, movieId) {
-    return service.fetchMovieVideos(movieId).then((response) => {
+  async fetchMovieVideos(context, movieId) {
+    try {
+      const response = await service.fetchMovieVideos(movieId)
       context.commit('setMovieVideos', response.data.results)
-    })
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 
